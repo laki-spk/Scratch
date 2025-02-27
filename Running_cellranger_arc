@@ -1,0 +1,16 @@
+srun -A pcbg -p pcbg-compute -c 16 --mem=350G --pty bash
+
+#direct to the csv file folder
+cd /temp_work/ch250798/ 
+
+#export PATH of cellranger_arc to the bash
+export PATH=//temp_work/ch250798/cellranger-arc-2.0.2:$PATH
+which cellranger-arc
+
+#now run cellranger count/ aggr
+#for this file format in a csv should looks like: 
+  #library_id,atac_fragments,per_barcode_metrics,gex_molecule_info
+  #A4T,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A4T/outs/atac_fragments.tsv.gz,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A4T/outs/per_barcode_metrics.csv,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A4T/outs/gex_molecule_info.h5
+  #A24,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A24/outs/atac_fragments.tsv.gz,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A24/outs/per_barcode_metrics.csv,/temp_work/ch250798/Scenic/Multiome/cellranger_arc/A24/outs/gex_molecule_info.h5
+
+cellranger-arc aggr --id=Adult --csv=aggr.csv --normalize=depth --reference=/temp_work/ch250798/kat/refdata-cellranger-arc-mm10-2020-A-2.0.0
