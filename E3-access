@@ -1,3 +1,7 @@
 #log in to Putty
 #Type in the following
 srun -A pcbg -p pcbg-compute --qos=unlimited -c 16 --mem=350G --pty bash
+
+
+#To check available nodes:
+sinfo
