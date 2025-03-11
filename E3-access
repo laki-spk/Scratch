@@ -5,3 +5,11 @@ srun -A pcbg -p pcbg-compute --qos=unlimited -c 16 --mem=350G --pty bash
 
 #To check available nodes:
 sinfo
+
+#to see how many gpus available..
+scontrol show node gpu-10-0
+scontrol show node gpu-10-1
+
+#depends on the availability you can request the nodes as 
+ srun -A bch -p bch-gpu --nodes=1 --nodelist=gpu-10-0 --gpus=4 -c 16 --mem=350G --pty bash
+
