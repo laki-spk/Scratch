@@ -1,5 +1,26 @@
 srun -A pcbg -p pcbg-compute -c 16 --mem=350G --pty bash
 
+conda create -n cellranger_arc_env -c conda-forge python=3.8
+conda activate cellranger_arc_env
+
+#download and install it
+wget -O cellranger-arc-2.0.2.tar.gz https://cf.10xgenomics.com/releases/arc/cellranger-arc-2.0.2.tar.gz
+tar -xzvf cellranger-arc-2.0.2.tar.gz
+cd cellranger-arc-2.0.2
+./cellranger-arc --help
+
+export PATH=$PWD:$PATH
+echo "export PATH=$PWD:\$PATH" >> ~/.bashrc
+
+#or add it permenantly to your bashrc
+echo 'export PATH=/home/ch250798/cellranger-arc-2.0.2:$PATH' >> ~/.bashrc
+source ~/.bashrc
+cellranger-arc --help
+cellranger-arc --version
+
+
+
+
 #direct to the csv file folder
 cd /temp_work/ch250798/ 
 
